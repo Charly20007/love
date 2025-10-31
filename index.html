@@ -1,0 +1,988 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Carlos y Fátima</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Manrope:wght@300;400;600;800&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --pink: #ff3f9e; /* rosa principal */
+        --pink2: #ff86cd; /* rosa secundario */
+        --ink: #f7f6f8; /* texto */
+        --muted: #e9d5e6; /* secundario */
+        --bg: #0a0a0c; /* negro profundo */
+        --glass: rgba(255, 255, 255, 0.07);
+        --stroke: rgba(255, 255, 255, 0.16);
+        --card: rgba(10, 10, 12, 0.55);
+        --radius: 22px;
+        --shadow: 0 20px 70px rgba(255, 63, 158, 0.28),
+          0 8px 24px rgba(0, 0, 0, 0.55);
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        height: 100%;
+      }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        font-family: "Manrope", system-ui, Segoe UI, Roboto, Arial;
+        overflow-x: hidden;
+      }
+
+      /* ===== FONDO: patrón sillar + aurora ===== */
+      .bg {
+        position: fixed;
+        inset: 0;
+        z-index: -3;
+        background: radial-gradient(
+            900px 420px at 80% -10%,
+            rgba(255, 63, 158, 0.16),
+            transparent 60%
+          ),
+          radial-gradient(
+            820px 360px at 8% 0%,
+            rgba(255, 134, 205, 0.12),
+            transparent 65%
+          ),
+          linear-gradient(160deg, #0a0a0c 20%, #0b0b0d 80%);
+      }
+      .sillar {
+        position: fixed;
+        inset: 0;
+        z-index: -2;
+        opacity: 0.08;
+        background-size: 48px 48px;
+        background-image: linear-gradient(90deg, #fff 1px, transparent 1px),
+          linear-gradient(#fff 1px, transparent 1px);
+        mask: radial-gradient(ellipse at 50% 20%, #000 60%, transparent 80%);
+        animation: sillarMove 18s linear infinite;
+      }
+      @keyframes sillarMove {
+        to {
+          background-position: 48px 48px, 48px 48px;
+        }
+      }
+      #stars {
+        position: fixed;
+        inset: 0;
+        z-index: -1;
+        pointer-events: none;
+      }
+
+      /* ===== LAYOUT ===== */
+      .wrap {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px 16px 88px;
+      }
+
+      /* ===== TOP ===== */
+      .top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        position: sticky;
+        top: 0;
+        z-index: 20;
+        padding: 10px 0;
+        backdrop-filter: blur(8px);
+        background: linear-gradient(180deg, rgba(0, 0, 0, 0.45), transparent);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      }
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .logo {
+        width: 44px;
+        height: 44px;
+        border-radius: 14px;
+        display: grid;
+        place-items: center;
+        background: conic-gradient(
+          from 40deg,
+          var(--pink),
+          var(--pink2),
+          #ffd9f1,
+          var(--pink)
+        );
+        box-shadow: var(--shadow);
+      }
+      .title {
+        font-family: "Playfair Display", serif;
+        font-weight: 700;
+        letter-spacing: 0.3px;
+      }
+      .cta {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+      .btn {
+        appearance: none;
+        border: 0;
+        cursor: pointer;
+        font-weight: 800;
+        letter-spacing: 0.2px;
+        color: #0b0b0b;
+        background: linear-gradient(180deg, var(--pink), var(--pink2));
+        padding: 10px 14px;
+        border-radius: 999px;
+        box-shadow: var(--shadow);
+      }
+      .ghost {
+        background: transparent;
+        color: #fff;
+        border: 1px solid var(--stroke);
+      }
+
+      /* ===== HERO AREQUIPA ===== */
+      .hero {
+        display: grid;
+        grid-template-columns: 1.1fr 0.9fr;
+        gap: 26px;
+        align-items: end;
+        padding: 28px 0 6px;
+      }
+      .h1 {
+        font-family: "Playfair Display", serif;
+        font-size: clamp(36px, 7vw, 86px);
+        line-height: 1;
+        margin: 0 0 10px;
+      }
+      .h1 .pink {
+        color: var(--pink);
+        text-shadow: 0 18px 70px rgba(255, 63, 158, 0.5);
+      }
+      .sub {
+        margin: 4px 0 14px;
+        color: var(--muted);
+        font-size: clamp(14px, 2.2vw, 20px);
+      }
+
+      .misti {
+        position: relative;
+        height: 360px;
+        width: 100%;
+      }
+      .misti svg {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+      }
+      .sun {
+        filter: drop-shadow(0 0 40px rgba(255, 63, 158, 0.55));
+      }
+      .glow {
+        animation: breath 5s ease-in-out infinite;
+      }
+      @keyframes breath {
+        0%,
+        100% {
+          opacity: 0.6;
+        }
+        50% {
+          opacity: 1;
+        }
+      }
+
+      /* ===== SECTIONS ===== */
+      .section {
+        margin: 30px 0;
+      }
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+        gap: 16px;
+      }
+      .card {
+        grid-column: span 12;
+        background: var(--card);
+        border: 1px solid var(--stroke);
+        border-radius: var(--radius);
+        padding: 18px;
+        box-shadow: var(--shadow);
+        backdrop-filter: blur(8px);
+        opacity: 0;
+        transform: translateY(12px) scale(0.985);
+        transition: 0.6s ease all;
+      }
+      .card.show {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+      .card h3 {
+        margin: 0 0 8px;
+        font-family: "Playfair Display", serif;
+        font-size: 22px;
+      }
+      .muted {
+        color: #e9d5e6;
+      }
+      .span-7 {
+        grid-column: span 7;
+      }
+      .span-5 {
+        grid-column: span 5;
+      }
+
+      /* ===== LISTAS ===== */
+      .loves {
+        display: grid;
+        gap: 10px;
+        list-style: none;
+        padding: 0;
+        margin: 8px 0 0;
+        font-weight: 700;
+      }
+      .loves li {
+        background: rgba(0, 0, 0, 0.28);
+        border: 1px solid var(--stroke);
+        border-radius: 14px;
+        padding: 10px 12px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+      }
+
+      /* ===== MAPA / RUTA AMOR (SVG) ===== */
+      .mapCard {
+        position: relative;
+        overflow: hidden;
+      }
+      .route {
+        width: 100%;
+        max-width: 780px;
+        margin: 10px auto 0;
+        display: block;
+      }
+      .dot {
+        offset-path: path(
+          "M 30 220 L 180 220 L 180 170 L 360 170 L 360 120 L 560 120 L 560 80 L 700 80"
+        );
+        offset-rotate: auto;
+        animation: moveDot 14s ease-in-out infinite;
+      }
+      @keyframes moveDot {
+        0% {
+          offset-distance: 0%;
+        }
+        50% {
+          offset-distance: 100%;
+        }
+        100% {
+          offset-distance: 0%;
+        }
+      }
+
+      /* ===== PREGUNTA SÍ/NO (No escapa entre sillar) ===== */
+      .ask {
+        display: grid;
+        place-items: center;
+        text-align: center;
+        gap: 14px;
+      }
+      .zone {
+        position: relative;
+        width: 340px;
+        max-width: 86vw;
+        height: 160px;
+      }
+      .y {
+        min-width: 140px;
+      }
+      .n {
+        min-width: 140px;
+        background: #1a1a1a;
+        color: #fff;
+        border: 1px solid var(--stroke);
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+      }
+
+      /* ===== TOAST / MODAL ===== */
+      .toast {
+        position: fixed;
+        left: 50%;
+        bottom: 18px;
+        transform: translateX(-50%);
+        background: #111;
+        color: #fff;
+        border: 1px solid var(--stroke);
+        padding: 10px 14px;
+        border-radius: 12px;
+        opacity: 0;
+        pointer-events: none;
+        transition: 0.3s opacity;
+        z-index: 60;
+      }
+      .toast.show {
+        opacity: 1;
+      }
+      .modal {
+        position: fixed;
+        inset: 0;
+        display: none;
+        place-items: center;
+        background: rgba(0, 0, 0, 0.7);
+        backdrop-filter: blur(2px);
+        z-index: 50;
+        padding: 20px;
+      }
+      .modal.active {
+        display: grid;
+      }
+      .sheet {
+        max-width: 860px;
+        width: 100%;
+        background: var(--glass);
+        border: 1px solid var(--stroke);
+        border-radius: 22px;
+        overflow: hidden;
+        box-shadow: var(--shadow);
+      }
+      .sheetHead {
+        position: relative;
+        height: 300px;
+        background: linear-gradient(
+            120deg,
+            rgba(255, 63, 158, 0.18),
+            rgba(255, 121, 198, 0.06)
+          ),
+          url("https://images.unsplash.com/photo-1519681393784-d120267933ba?q=80&w=1776&auto=format&fit=crop")
+            center/cover no-repeat;
+      }
+      .sheetBody {
+        padding: 16px;
+      }
+
+      /* ===== CONTADOR ===== */
+      .count {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        font-weight: 800;
+      }
+      .pill {
+        padding: 8px 12px;
+        border-radius: 999px;
+        background: rgba(255, 63, 158, 0.15);
+        border: 1px solid var(--stroke);
+      }
+
+      /* ===== PANDA ===== */
+      .panda {
+        position: fixed;
+        bottom: 14px;
+        right: 14px;
+        width: 84px;
+        height: 84px;
+        cursor: pointer;
+        z-index: 40;
+        filter: drop-shadow(0 10px 24px rgba(0, 0, 0, 0.44));
+      }
+
+      /* ====== RESPONSIVE EXTRA ====== */
+      @media (max-width: 980px) {
+        .span-7,
+        .span-5 {
+          grid-column: span 12;
+        }
+        .hero {
+          grid-template-columns: 1fr;
+          align-items: start;
+        }
+        .route {
+          max-width: 100%;
+          margin-top: 6px;
+        }
+        .zone {
+          width: 100%;
+          height: 180px;
+        }
+        .cta .btn {
+          padding: 10px 12px;
+        }
+      }
+      @media (max-width: 640px) {
+        .h1 {
+          font-size: clamp(28px, 9vw, 56px);
+        }
+        .title {
+          font-size: 16px;
+        }
+        .top {
+          padding: 8px 0;
+        }
+        .btn {
+          font-size: 14px;
+        }
+        .card {
+          padding: 16px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="bg"></div>
+    <div class="sillar"></div>
+    <canvas id="stars"></canvas>
+
+    <div class="wrap">
+      <header class="top">
+        <div class="brand">
+          <div class="logo">💗</div>
+          <div class="title">Para mi Rocotito Relleno - Mi Fatima</div>
+        </div>
+        <div class="cta">
+          <button id="btnPlay" class="btn">▶️ Música</button>
+          <button id="btnHearts" class="btn">Confetti 💖</button>
+        </div>
+      </header>
+
+      <!-- HERO MISTI -->
+      <section class="hero">
+        <div>
+          <h1 class="h1">
+            Mi amor mi <span class="pink">Fatima</span>, Cuando es .. es
+          </h1>
+          <p class="sub">
+            Desde el <b>25 de septiembre</b> a las <b>12:33</b> te elijo. A las
+            <b>7:20 pm</b>, tu “te amo” se volvió mi casa. Y porque cuando lo
+            sabes ... lo sabes
+          </p>
+          <div class="section">
+            <div id="count" class="count"></div>
+          </div>
+        </div>
+        <div class="misti">
+          <!-- Silueta del Misti + Catedral simplificada -->
+          <svg
+            viewBox="0 0 900 360"
+            xmlns="http://www.w3.org/2000/svg"
+            aria-label="Misti y Catedral"
+          >
+            <defs>
+              <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#ff77c8" />
+                <stop offset="100%" stop-color="#0a0a0c" />
+              </linearGradient>
+            </defs>
+            <rect
+              width="100%"
+              height="100%"
+              fill="url(#sky)"
+              class="glow"
+              opacity=".6"
+            />
+            <!-- sol rosa -->
+            <circle
+              class="sun"
+              cx="720"
+              cy="80"
+              r="46"
+              fill="#ff9ad8"
+              opacity=".9"
+            />
+            <!-- Misti -->
+            <path
+              d="M0 260 L220 220 L360 230 L520 210 L700 240 L900 230 L900 360 L0 360 Z"
+              fill="#1a1a1e"
+              stroke="#2a2a30"
+              stroke-width="2"
+            />
+            <!-- Catedral (arcos Yanahuara vibes) -->
+            <g fill="#1c1c21" stroke="#2a2a30" stroke-width="2">
+              <rect x="110" y="220" width="200" height="80" />
+              <rect x="150" y="230" width="40" height="50" rx="6" />
+              <rect x="230" y="230" width="40" height="50" rx="6" />
+              <polygon points="130,220 170,180 210,220" />
+              <polygon points="250,220 290,180 330,220" />
+            </g>
+          </svg>
+        </div>
+      </section>
+
+      <!-- CARTA + PROMESAS -->
+      <section class="section grid">
+        <article class="card span-7">
+          <h3>Carta dedicada para ti:</h3>
+          <p id="letter" class="muted">
+            Quiero que leas estas palabras despacio, porque en cada una de ellas
+            voy dejando mi verdad, mi corazón y todo lo que siento por ti. Yo te
+            amo… y cuando digo que te amo, no es solo por lo que eres conmigo,
+            sino por la persona increíble que eres siempre: fuerte, sensible,
+            auténtica, y capaz de iluminar hasta mis días más grises. Tal vez
+            cometí errores, tal vez no siempre supe cuidar como debí lo que
+            siento por ti, pero estoy aquí, firme, demostrándote con hechos que
+            puedo ser mejor por ti y para ti. Porque tú lo vales todo, porque tú
+            mereces amor del más puro, del que se queda, del que lucha, del que
+            no huye cuando algo se pone difícil. Quiero que confíes en mí, en lo
+            que estoy construyendo, en lo que juntos podemos llegar a ser. Yo no
+            soy alguien que retrocede ni que se rinde cuando se trata de ti. Soy
+            alguien que avanza, que crece y que aprende, porque sé que tú
+            también me has amado y me amas y lo sabes y porque este amor no ha
+            sido casualidad, ha sido destino. Recuerda cuánto te amo y cuántas
+            ganas tengo de construir un “nosotros” que se quede toda la vida.
+            Con mi corazón en tus manos… Tu Carlos o como me dices tu agnorante,
+            cevichito ❤️
+          </p>
+          <div
+            style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 8px"
+          >
+            <button id="btnCopy" class="btn ghost">Copiar carta</button>
+            <button id="btnAdd" class="btn ghost">➕ Agregar promesa</button>
+            <button id="btnClear" class="btn ghost">🗑️ Limpiar promesas</button>
+          </div>
+        </article>
+        <article class="card span-5">
+          <h3>Promesas que sostienen</h3>
+          <ul id="list" class="loves"></ul>
+        </article>
+      </section>
+
+      <!-- COSAS QUE AMA -->
+      <section class="section card">
+        <h3>Cosas que amas 🐼🍤</h3>
+        <p class="muted">Porque te escucho y te guardo.</p>
+        <ul class="loves">
+          <li>🍤 <b>Picante de camarón</b></li>
+          <li>🐟 Ceviche mixto</li>
+          <li>🦆 Arroz con pato</li>
+          <li>🍷 Pato al vino</li>
+          <li>🍲 Caldo de gallina</li>
+          <li>✨ Cremas: <b>mayonesa</b> & <b>ají</b></li>
+          <li>🍰 Torta de tres leches</li>
+          <li>🐼 Panda — tu animal favorito</li>
+        </ul>
+      </section>
+
+      <!-- RUTA DEL AMOR AREQUIPEÑO (SVG) -->
+      <section class="section card mapCard">
+        <h3>Ruta del amor arequipeño</h3>
+        <p class="muted">
+          Yo te amo de aquí a la luna, ida y vuelta, a pasito de totuga 🐢🌙
+        </p>
+        <svg
+          class="route"
+          viewBox="0 0 740 260"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <defs>
+            <linearGradient id="gline" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0%" stop-color="#ff66bb" />
+              <stop offset="100%" stop-color="#ffc1e6" />
+            </linearGradient>
+          </defs>
+          <!-- Torre escalonada hacia la luna -->
+          <path
+            d="M 30 220 L 180 220 L 180 170 L 360 170 L 360 120 L 560 120 L 560 80 L 700 80"
+            fill="none"
+            stroke="url(#gline)"
+            stroke-width="6"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+
+          <!-- Escalones visuales -->
+          <rect
+            x="176"
+            y="216"
+            width="8"
+            height="8"
+            rx="2"
+            fill="#ffc1e6"
+            opacity=".9"
+          />
+          <rect
+            x="356"
+            y="166"
+            width="8"
+            height="8"
+            rx="2"
+            fill="#ffc1e6"
+            opacity=".9"
+          />
+          <rect
+            x="556"
+            y="116"
+            width="8"
+            height="8"
+            rx="2"
+            fill="#ffc1e6"
+            opacity=".9"
+          />
+
+          <!-- Hitos escalonados -->
+          <circle cx="30" cy="220" r="7" fill="#fff" />
+          <text x="44" y="218" fill="#fff" font-size="12">
+            Lima — Chorrillos
+          </text>
+
+          <circle cx="180" cy="220" r="7" fill="#fff" />
+          <text x="192" y="218" fill="#ffc9e8" font-size="12">Inicio</text>
+
+          <circle cx="360" cy="170" r="7" fill="#fff" />
+          <text x="372" y="168" fill="#fff" font-size="12">
+            Arequipa — Corire
+          </text>
+
+          <circle cx="560" cy="120" r="7" fill="#fff" />
+          <text x="572" y="118" fill="#fff" font-size="12">Tierra</text>
+
+          <!-- Luna en la cima -->
+          <g transform="translate(700,80)">
+            <circle r="16" fill="#ffe6f5" stroke="#ffbde5" stroke-width="2" />
+            <circle cx="-5" cy="-4" r="3" fill="#ffbddf" opacity=".7" />
+            <circle cx="6" cy="3" r="2.5" fill="#ffbddf" opacity=".6" />
+          </g>
+          <text x="718" y="76" fill="#fff" font-size="12">Luna</text>
+
+          <!-- Tortuga que sube la torre (usa motion-path via CSS .dot) -->
+          <g class="dot"><text font-size="22" dy="6" dx="-10">🐢</text></g>
+        </svg>
+      </section>
+
+      <!-- PREGUNTA SÍ O SÍ -->
+      <section class="section card ask">
+        <h3>Pregunta importante…</h3>
+        <p class="muted">
+          ¿Quieres volver conmigo? Prometo cuidarte con hechos, paciencia y amor
+          bonito. 💫
+        </p>
+        <div class="zone" id="zone">
+          <button id="yes" class="btn y">💗 Sí, volvamos</button>
+          <button
+            id="no"
+            class="btn ghost n"
+            aria-disabled="true"
+            tabindex="-1"
+          >
+            No
+          </button>
+        </div>
+      </section>
+
+      <footer style="text-align: center; color: #cbb8c9; margin-top: 30px">
+        Amar a un alma de lava — Siempre juntos ♾️
+      </footer>
+    </div>
+
+    <!-- MODAL CELEBRACIÓN -->
+    <div id="modal" class="modal" role="dialog" aria-modal="true">
+      <div class="sheet">
+        <div class="sheetHead"></div>
+        <div class="sheetBody">
+          <h3 style="margin: 0 0 8px; font-family: Playfair Display, serif">
+            ¡Gracias por decir que SÍ! 💗
+          </h3>
+          <p class="muted">
+            Prometo convertir cada día en un detalle para ti. Desde hoy, todo a
+            tu ritmo, con verdad y ternura.
+          </p>
+          <div
+            style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 8px"
+          >
+            <button id="btnOk" class="btn">Brindemos 🥂</button>
+            <button id="btnClose" class="btn ghost">Cerrar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="toast" class="toast">¡Listo!</div>
+    <audio id="audio" src="music.mp3" preload="none"></audio>
+
+    <!-- Panda -->
+    <svg class="panda" id="panda" viewBox="0 0 128 128" aria-label="Panda">
+      <circle
+        cx="64"
+        cy="64"
+        r="52"
+        fill="#fff"
+        stroke="#000"
+        stroke-width="4"
+      />
+      <circle cx="44" cy="52" r="14" fill="#000" />
+      <circle cx="84" cy="52" r="14" fill="#000" />
+      <circle cx="44" cy="58" r="6" fill="#fff" />
+      <circle cx="84" cy="58" r="6" fill="#fff" />
+      <ellipse cx="64" cy="88" rx="22" ry="16" fill="#000" />
+      <circle cx="40" cy="24" r="10" fill="#000" />
+      <circle cx="88" cy="24" r="10" fill="#000" />
+    </svg>
+
+    <script>
+      /* ===== Estrellas suaves ===== */
+      const S = document.getElementById("stars");
+      const C = S.getContext("2d");
+      let W, H;
+      function rs() {
+        W = S.width = innerWidth;
+        H = S.height = innerHeight;
+      }
+      rs();
+      addEventListener("resize", rs);
+      const stars = Array.from({ length: 160 }, () => ({
+        x: Math.random() * W,
+        y: Math.random() * H,
+        r: Math.random() * 1.6 + 0.4,
+        a: Math.random() * 6,
+      }));
+      (function draw() {
+        C.clearRect(0, 0, W, H);
+        stars.forEach((s) => {
+          s.a += 0.02;
+          const tw = 0.5 + Math.sin(s.a) * 0.5;
+          C.beginPath();
+          C.arc(s.x, s.y, s.r * tw, 0, Math.PI * 2);
+          C.fillStyle = "rgba(255,200,235,.9)";
+          C.fill();
+        });
+        requestAnimationFrame(draw);
+      })();
+
+      /* ===== Scroll reveal ===== */
+      const io = new IntersectionObserver(
+        (e) =>
+          e.forEach((x) => x.isIntersecting && x.target.classList.add("show")),
+        { threshold: 0.14 }
+      );
+      document.querySelectorAll(".card").forEach((c) => io.observe(c));
+
+      /* ===== Hearts ===== */
+      function heartsBurst(n = 150) {
+        const frag = document.createDocumentFragment();
+        for (let i = 0; i < n; i++) {
+          const b = document.createElement("div");
+          b.textContent = "❤";
+          b.style.cssText = `position:fixed; left:50%; top:50%; transform:translate(-50%,-50%); pointer-events:none; z-index:80; font-size:${
+            10 + Math.random() * 28
+          }px; color:#ffd1ea; text-shadow:0 10px 30px rgba(255,63,158,.6);`;
+          frag.appendChild(b);
+          const dx = (Math.random() - 0.5) * innerWidth * 0.9;
+          const dy = (Math.random() - 0.35) * innerHeight * 0.9;
+          const tt = 800 + Math.random() * 900;
+          b.animate(
+            [
+              { transform: "translate(-50%,-50%) scale(.6)", opacity: 1 },
+              {
+                transform: `translate(calc(-50% + ${dx}px), calc(-50% + ${dy}px)) scale(1.25)`,
+                opacity: 0,
+              },
+            ],
+            { duration: tt, easing: "cubic-bezier(.22,.61,.36,1)" }
+          ).onfinish = () => b.remove();
+        }
+        document.body.appendChild(frag);
+      }
+
+      /* ===== Música ===== */
+      const audio = document.getElementById("audio");
+      const btnPlay = document.getElementById("btnPlay");
+      let playing = false;
+      function toast(m) {
+        const t = document.getElementById("toast");
+        t.textContent = m;
+        t.classList.add("show");
+        setTimeout(() => t.classList.remove("show"), 1200);
+      }
+      btnPlay.addEventListener("click", async () => {
+        try {
+          if (!playing) {
+            await audio.play();
+            playing = true;
+            btnPlay.textContent = "⏸️ Pausar";
+            toast("Reproduciendo…");
+          } else {
+            audio.pause();
+            playing = false;
+            btnPlay.textContent = "▶️ Música";
+            toast("Pausado");
+          }
+        } catch {
+          toast("Sube music.mp3 🎵");
+        }
+      });
+      document
+        .getElementById("btnHearts")
+        .addEventListener("click", () => heartsBurst(180));
+
+      /* ===== Copiar carta ===== */
+      document
+        .getElementById("btnCopy")
+        ?.addEventListener("click", async () => {
+          const txt = document.getElementById("letter").innerText.trim();
+          try {
+            await navigator.clipboard.writeText(txt);
+            toast("Carta copiada 💌");
+          } catch {
+            toast("No se pudo copiar 😥");
+          }
+        });
+
+      /* ===== Promesas (localStorage) ===== */
+      const KEY = "promesas_arequipa_rosa";
+      const list = document.getElementById("list");
+      function read() {
+        try {
+          return JSON.parse(localStorage.getItem(KEY) || "[]");
+        } catch {
+          return [];
+        }
+      }
+      function write(v) {
+        localStorage.setItem(KEY, JSON.stringify(v));
+      }
+      function render() {
+        list.innerHTML = "";
+        read().forEach((t, i) => {
+          const li = document.createElement("li");
+          li.innerHTML = `<span>${t}</span><button class="btn ghost" data-del="${i}">✖</button>`;
+          list.appendChild(li);
+        });
+      }
+      render();
+      list.addEventListener("click", (e) => {
+        const b = e.target.closest("[data-del]");
+        if (!b) return;
+        const arr = read();
+        arr.splice(+b.dataset.del, 1);
+        write(arr);
+        render();
+      });
+      document.getElementById("btnAdd").addEventListener("click", () => {
+        const t = prompt("Escribe tu promesa:");
+        if (!t) return;
+        const arr = read();
+        arr.push(t);
+        write(arr);
+        render();
+        toast("Promesa agregada");
+      });
+      document.getElementById("btnClear").addEventListener("click", () => {
+        if (confirm("¿Borrar todas las promesas?")) {
+          write([]);
+          render();
+          toast("Promesas limpiadas");
+        }
+      });
+
+      /* ===== Contador desde 25/09 12:33 ===== */
+      const start = new Date(new Date().getFullYear() + "-09-25T12:33:00");
+      if (Date.now() - start.getTime() < 0)
+        start.setFullYear(start.getFullYear() - 1);
+      const $count = document.getElementById("count");
+      function fmt(n) {
+        return String(n).padStart(2, "0");
+      }
+      function tick() {
+        const now = new Date();
+        let diff = Math.max(0, now - start);
+        const days = Math.floor(diff / 86400000);
+        diff -= days * 86400000;
+        const hrs = Math.floor(diff / 3600000);
+        diff -= hrs * 3600000;
+        const mins = Math.floor(diff / 60000);
+        const secs = Math.floor((diff - mins * 60000) / 1000);
+        $count.innerHTML = `<span class="pill">Días <b>${days}</b></span><span class="pill">Horas <b>${fmt(
+          hrs
+        )}</b></span><span class="pill">Min <b>${fmt(
+          mins
+        )}</b></span><span class="pill">Seg <b>${fmt(secs)}</b></span>`;
+      }
+      tick();
+      setInterval(tick, 1000);
+
+      /* ===== Sí o Sí (No se escapa entre sillar) ===== */
+      const zone = document.getElementById("zone");
+      const yes = document.getElementById("yes");
+      const no = document.getElementById("no");
+      function moveNo() {
+        const r = zone.getBoundingClientRect();
+        const pad = 8;
+        const x = Math.random() * (r.width - no.offsetWidth - pad * 2) + pad;
+        const y = Math.random() * (r.height - no.offsetHeight - pad * 2) + pad;
+        no.style.left = x + "px";
+        no.style.top = y + "px";
+        no.style.transform = "translate(0,0)";
+      }
+      zone.addEventListener("mousemove", (e) => {
+        const nr = no.getBoundingClientRect();
+        const d = Math.hypot(
+          e.clientX - (nr.left + nr.width / 2),
+          e.clientY - (nr.top + nr.height / 2)
+        );
+        if (d < 110) {
+          moveNo();
+        }
+      });
+      no.addEventListener("pointerdown", (e) => {
+        e.preventDefault();
+        moveNo();
+        toast("El No se pierde entre el sillar 😜");
+      });
+      no.addEventListener(
+        "touchstart",
+        (e) => {
+          e.preventDefault();
+          moveNo();
+        },
+        { passive: false }
+      );
+
+      const modal = document.getElementById("modal");
+      const btnOk = document.getElementById("btnOk");
+      const btnClose = document.getElementById("btnClose");
+      yes.addEventListener("click", () => {
+        modal.classList.add("active");
+        heartsBurst(200);
+      });
+      btnOk.addEventListener("click", () => {
+        heartsBurst(160);
+        toast("Brindemos por nosotros 🥂");
+      });
+      btnClose.addEventListener("click", () =>
+        modal.classList.remove("active")
+      );
+      modal.addEventListener("click", (e) => {
+        if (e.target === modal) modal.classList.remove("active");
+      });
+
+      // pos inicial del "No"
+      moveNo();
+
+      /* ===== Panda caminante con vista al Misti ===== */
+      const panda = document.getElementById("panda");
+      let walking = false;
+      panda.addEventListener("click", () => {
+        if (walking) return;
+        walking = true;
+        panda.animate(
+          [
+            { transform: "translateX(0)" },
+            { transform: `translateX(${-innerWidth + 120}px)` },
+          ],
+          { duration: 4000, easing: "ease-in-out" }
+        ).onfinish = () => (walking = false);
+        heartsBurst(60);
+      });
+    </script>
+  </body>
+</html>
