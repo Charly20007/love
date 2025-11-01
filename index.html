@@ -531,353 +531,366 @@
       </header>
 
       <!-- HERO -->
-      <div class="misti">
-        <svg
-          viewBox="0 0 900 360"
-          xmlns="http://www.w3.org/2000/svg"
-          aria-label="Misti y Casa con familia"
-        >
-          <defs>
-            <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stop-color="#ff77c8" />
-              <stop offset="100%" stop-color="#0a0a0c" />
-            </linearGradient>
-          </defs>
+      <section class="hero">
+        <div>
+          <h1 class="h1">
+            Mi amor mi <span class="pink">Fatima</span>, Cuando es .. es
+          </h1>
+          <p class="sub">
+            Desde el <b>25 de septiembre</b> a las <b>12:33</b> te elijo. A las
+            <b>7:20 pm</b>, tu “te amo” se volvió mi casa. Y porque cuando lo
+            sabes ... lo sabes
+          </p>
+          <div class="section"><div id="count" class="count"></div></div>
+        </div>
+        <div class="misti">
+          <svg
+            viewBox="0 0 900 360"
+            xmlns="http://www.w3.org/2000/svg"
+            aria-label="Misti y Casa con familia"
+          >
+            <defs>
+              <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#ff77c8" />
+                <stop offset="100%" stop-color="#0a0a0c" />
+              </linearGradient>
+            </defs>
 
-          <!-- Cielo + sol -->
-          <rect
-            width="100%"
-            height="100%"
-            fill="url(#sky)"
-            class="glow"
-            opacity=".6"
-          />
-          <circle
-            class="sun"
-            cx="720"
-            cy="80"
-            r="46"
-            fill="#ff9ad8"
-            opacity=".9"
-          />
+            <!-- Cielo + sol -->
+            <rect
+              width="100%"
+              height="100%"
+              fill="url(#sky)"
+              class="glow"
+              opacity=".6"
+            />
+            <circle
+              class="sun"
+              cx="720"
+              cy="80"
+              r="46"
+              fill="#ff9ad8"
+              opacity=".9"
+            />
 
-          <!-- Misti -->
-          <path
-            d="M0 260 L220 220 L360 230 L520 210 L700 240 L900 230 L900 360 L0 360 Z"
-            fill="#1a1a1e"
-            stroke="#2a2a30"
-            stroke-width="2"
-          />
-
-          <!-- === CASITA + FAMILIA + MASCOTAS (colocado sobre la tierra) === -->
-          <g id="home-scene" transform="translate(120,205)">
-            <!-- Casa -->
-            <g id="house" transform="translate(0,0)">
-              <!-- base -->
-              <rect
-                x="0"
-                y="20"
-                width="180"
-                height="95"
-                rx="6"
-                fill="#1b1b21"
-                stroke="#2a2a30"
-                stroke-width="2"
-              />
-              <!-- techo -->
-              <polygon
-                points="-8,20 90,-22 188,20"
-                fill="#23232b"
-                stroke="#2a2a30"
-                stroke-width="2"
-              />
-              <!-- chimenea -->
-              <rect
-                x="128"
-                y="-4"
-                width="16"
-                height="28"
-                fill="#23232b"
-                stroke="#2a2a30"
-                stroke-width="2"
-              />
-              <!-- humito -->
-              <g opacity=".7">
-                <circle cx="136" cy="-10" r="3" fill="#ffbddf">
-                  <animate
-                    attributeName="cy"
-                    from="-6"
-                    to="-26"
-                    dur="2.6s"
-                    repeatCount="indefinite"
-                  />
-                  <animate
-                    attributeName="opacity"
-                    values="0.9;0"
-                    dur="2.6s"
-                    repeatCount="indefinite"
-                  />
-                </circle>
-                <circle cx="142" cy="-16" r="2.5" fill="#ffc9e8">
-                  <animate
-                    attributeName="cy"
-                    from="-12"
-                    to="-30"
-                    dur="2.2s"
-                    repeatCount="indefinite"
-                  />
-                  <animate
-                    attributeName="opacity"
-                    values="0.8;0"
-                    dur="2.2s"
-                    repeatCount="indefinite"
-                  />
-                </circle>
-              </g>
-
-              <!-- puerta -->
-              <rect
-                x="20"
-                y="54"
-                width="36"
-                height="61"
-                rx="4"
-                fill="#15151a"
-                stroke="#2a2a30"
-                stroke-width="2"
-              />
-              <circle cx="52" cy="84" r="2" fill="#ff86cd" />
-
-              <!-- ventana cálida -->
-              <rect
-                x="82"
-                y="44"
-                width="76"
-                height="44"
-                rx="6"
-                fill="#202029"
-                stroke="#2a2a30"
-                stroke-width="2"
-              />
-              <rect
-                x="86"
-                y="48"
-                width="68"
-                height="36"
-                rx="4"
-                fill="#ffddf2"
-                opacity=".6"
-              >
-                <animate
-                  attributeName="opacity"
-                  values="0.55;0.8;0.55"
-                  dur="3.2s"
-                  repeatCount="indefinite"
-                />
-              </rect>
-              <!-- cruceta -->
-              <line
-                x1="120"
-                y1="48"
-                x2="120"
-                y2="84"
-                stroke="#2a2a30"
-                stroke-width="2"
-              />
-              <line
-                x1="86"
-                y1="66"
-                x2="154"
-                y2="66"
-                stroke="#2a2a30"
-                stroke-width="2"
-              />
-            </g>
-
-            <!-- Familia: chico (izq), hijita (centro), chica (der) -->
-            <g
-              id="family"
-              transform="translate(210,70)"
+            <!-- Misti -->
+            <path
+              d="M0 260 L220 220 L360 230 L520 210 L700 240 L900 230 L900 360 L0 360 Z"
+              fill="#1a1a1e"
               stroke="#2a2a30"
               stroke-width="2"
-              stroke-linecap="round"
-              fill="none"
-            >
-              <!-- chico -->
-              <g transform="translate(0,0)">
-                <circle cx="0" cy="-10" r="7" fill="#1c1c22" />
-                <line x1="0" y1="-3" x2="0" y2="22" />
-                <line x1="-10" y1="8" x2="10" y2="8" />
-                <line x1="-6" y1="22" x2="-2" y2="34" />
-                <line x1="6" y1="22" x2="2" y2="34" />
-              </g>
-              <!-- hijita -->
-              <g transform="translate(36,8)">
-                <circle cx="0" cy="-10" r="6" fill="#1c1c22" />
-                <line x1="0" y1="-4" x2="0" y2="18" />
-                <line x1="-8" y1="8" x2="8" y2="8" />
-                <line x1="-5" y1="18" x2="-2" y2="30" />
-                <line x1="5" y1="18" x2="2" y2="30" />
-                <!-- moñito -->
-                <circle cx="-4" cy="-16" r="2.2" fill="#ff86cd" />
-                <circle cx="-1" cy="-16" r="2.2" fill="#ff86cd" />
-              </g>
-              <!-- chica -->
-              <g transform="translate(70,0)">
-                <circle cx="0" cy="-10" r="7" fill="#1c1c22" />
-                <!-- vestido -->
-                <path d="M -10 22 L 0 -3 L 10 22 Z" fill="#1a1a21" />
-                <line x1="-6" y1="6" x2="-14" y2="16" />
-                <line x1="6" y1="6" x2="14" y2="16" />
-                <line x1="-4" y1="22" x2="-6" y2="34" />
-                <line x1="4" y1="22" x2="6" y2="34" />
-              </g>
-              <!-- manos tomadas -->
-              <line x1="10" y1="8" x2="28" y2="8" />
-              <line x1="44" y1="8" x2="62" y2="8" />
-            </g>
+            />
 
-            <!-- Perrito (cola se mueve) -->
-            <g id="dog" transform="translate(305,108)">
-              <ellipse
-                cx="0"
-                cy="10"
-                rx="16"
-                ry="10"
-                fill="#1b1b21"
-                stroke="#2a2a30"
-                stroke-width="2"
-              />
-              <circle
-                cx="-16"
-                cy="6"
-                r="7"
-                fill="#1b1b21"
-                stroke="#2a2a30"
-                stroke-width="2"
-              />
-              <path
-                d="M -20,0 q -3,6 2,8"
-                fill="#1b1b21"
-                stroke="#2a2a30"
-                stroke-width="2"
-              />
-              <line
-                x1="-8"
-                y1="18"
-                x2="-8"
-                y2="26"
-                stroke="#2a2a30"
-                stroke-width="2"
-              />
-              <line
-                x1="2"
-                y1="18"
-                x2="2"
-                y2="26"
-                stroke="#2a2a30"
-                stroke-width="2"
-              />
-              <path
-                id="dogTail"
-                d="M 12,6 q 10,-4 12,4"
-                fill="none"
-                stroke="#2a2a30"
-                stroke-width="2"
-              />
-              <animateTransform
-                xlink:href="#dogTail"
-                attributeName="transform"
-                type="rotate"
-                values="0 12 6; 15 12 6; 0 12 6"
-                dur="1.2s"
-                repeatCount="indefinite"
-              />
-            </g>
+            <!-- === CASITA + FAMILIA + MASCOTAS (colocado sobre la tierra) === -->
+            <g id="home-scene" transform="translate(120,205)">
+              <!-- Casa -->
+              <g id="house" transform="translate(0,0)">
+                <!-- base -->
+                <rect
+                  x="0"
+                  y="20"
+                  width="180"
+                  height="95"
+                  rx="6"
+                  fill="#1b1b21"
+                  stroke="#2a2a30"
+                  stroke-width="2"
+                />
+                <!-- techo -->
+                <polygon
+                  points="-8,20 90,-22 188,20"
+                  fill="#23232b"
+                  stroke="#2a2a30"
+                  stroke-width="2"
+                />
+                <!-- chimenea -->
+                <rect
+                  x="128"
+                  y="-4"
+                  width="16"
+                  height="28"
+                  fill="#23232b"
+                  stroke="#2a2a30"
+                  stroke-width="2"
+                />
+                <!-- humito -->
+                <g opacity=".7">
+                  <circle cx="136" cy="-10" r="3" fill="#ffbddf">
+                    <animate
+                      attributeName="cy"
+                      from="-6"
+                      to="-26"
+                      dur="2.6s"
+                      repeatCount="indefinite"
+                    />
+                    <animate
+                      attributeName="opacity"
+                      values="0.9;0"
+                      dur="2.6s"
+                      repeatCount="indefinite"
+                    />
+                  </circle>
+                  <circle cx="142" cy="-16" r="2.5" fill="#ffc9e8">
+                    <animate
+                      attributeName="cy"
+                      from="-12"
+                      to="-30"
+                      dur="2.2s"
+                      repeatCount="indefinite"
+                    />
+                    <animate
+                      attributeName="opacity"
+                      values="0.8;0"
+                      dur="2.2s"
+                      repeatCount="indefinite"
+                    />
+                  </circle>
+                </g>
 
-            <!-- Gatito (cola ondulante) -->
-            <g id="cat" transform="translate(268,112)">
-              <ellipse
-                cx="0"
-                cy="8"
-                rx="12"
-                ry="9"
-                fill="#1b1b21"
+                <!-- puerta -->
+                <rect
+                  x="20"
+                  y="54"
+                  width="36"
+                  height="61"
+                  rx="4"
+                  fill="#15151a"
+                  stroke="#2a2a30"
+                  stroke-width="2"
+                />
+                <circle cx="52" cy="84" r="2" fill="#ff86cd" />
+
+                <!-- ventana cálida -->
+                <rect
+                  x="82"
+                  y="44"
+                  width="76"
+                  height="44"
+                  rx="6"
+                  fill="#202029"
+                  stroke="#2a2a30"
+                  stroke-width="2"
+                />
+                <rect
+                  x="86"
+                  y="48"
+                  width="68"
+                  height="36"
+                  rx="4"
+                  fill="#ffddf2"
+                  opacity=".6"
+                >
+                  <animate
+                    attributeName="opacity"
+                    values="0.55;0.8;0.55"
+                    dur="3.2s"
+                    repeatCount="indefinite"
+                  />
+                </rect>
+                <!-- cruceta -->
+                <line
+                  x1="120"
+                  y1="48"
+                  x2="120"
+                  y2="84"
+                  stroke="#2a2a30"
+                  stroke-width="2"
+                />
+                <line
+                  x1="86"
+                  y1="66"
+                  x2="154"
+                  y2="66"
+                  stroke="#2a2a30"
+                  stroke-width="2"
+                />
+              </g>
+
+              <!-- Familia: chico (izq), hijita (centro), chica (der) -->
+              <g
+                id="family"
+                transform="translate(210,70)"
                 stroke="#2a2a30"
                 stroke-width="2"
-              />
-              <circle
-                cx="12"
-                cy="4"
-                r="6.5"
-                fill="#1b1b21"
-                stroke="#2a2a30"
-                stroke-width="2"
-              />
-              <polygon
-                points="8,-1 12,-6 16,-1"
-                fill="#1b1b21"
-                stroke="#2a2a30"
-                stroke-width="2"
-              />
-              <polygon
-                points="18,-1 22,-6 26,-1"
-                fill="#1b1b21"
-                stroke="#2a2a30"
-                stroke-width="2"
-              />
-              <line
-                x1="7"
-                y1="4"
-                x2="1"
-                y2="2"
-                stroke="#2a2a30"
-                stroke-width="2"
-              />
-              <line
-                x1="7"
-                y1="6"
-                x2="1"
-                y2="8"
-                stroke="#2a2a30"
-                stroke-width="2"
-              />
-              <line
-                x1="17"
-                y1="4"
-                x2="23"
-                y2="2"
-                stroke="#2a2a30"
-                stroke-width="2"
-              />
-              <line
-                x1="17"
-                y1="6"
-                x2="23"
-                y2="8"
-                stroke="#2a2a30"
-                stroke-width="2"
-              />
-              <path
-                id="catTail"
-                d="M -10,6 q -8,-4 -6,-12 q 6,-6 10,0"
+                stroke-linecap="round"
                 fill="none"
-                stroke="#2a2a30"
-                stroke-width="2"
-              />
-              <animateTransform
-                xlink:href="#catTail"
-                attributeName="transform"
-                type="rotate"
-                values="0 0 6;-10 0 6;0 0 6"
-                dur="2.2s"
-                repeatCount="indefinite"
-              />
+              >
+                <!-- chico -->
+                <g transform="translate(0,0)">
+                  <circle cx="0" cy="-10" r="7" fill="#1c1c22" />
+                  <line x1="0" y1="-3" x2="0" y2="22" />
+                  <line x1="-10" y1="8" x2="10" y2="8" />
+                  <line x1="-6" y1="22" x2="-2" y2="34" />
+                  <line x1="6" y1="22" x2="2" y2="34" />
+                </g>
+                <!-- hijita -->
+                <g transform="translate(36,8)">
+                  <circle cx="0" cy="-10" r="6" fill="#1c1c22" />
+                  <line x1="0" y1="-4" x2="0" y2="18" />
+                  <line x1="-8" y1="8" x2="8" y2="8" />
+                  <line x1="-5" y1="18" x2="-2" y2="30" />
+                  <line x1="5" y1="18" x2="2" y2="30" />
+                  <!-- moñito -->
+                  <circle cx="-4" cy="-16" r="2.2" fill="#ff86cd" />
+                  <circle cx="-1" cy="-16" r="2.2" fill="#ff86cd" />
+                </g>
+                <!-- chica -->
+                <g transform="translate(70,0)">
+                  <circle cx="0" cy="-10" r="7" fill="#1c1c22" />
+                  <!-- vestido -->
+                  <path d="M -10 22 L 0 -3 L 10 22 Z" fill="#1a1a21" />
+                  <line x1="-6" y1="6" x2="-14" y2="16" />
+                  <line x1="6" y1="6" x2="14" y2="16" />
+                  <line x1="-4" y1="22" x2="-6" y2="34" />
+                  <line x1="4" y1="22" x2="6" y2="34" />
+                </g>
+                <!-- manos tomadas -->
+                <line x1="10" y1="8" x2="28" y2="8" />
+                <line x1="44" y1="8" x2="62" y2="8" />
+              </g>
+
+              <!-- Perrito (cola se mueve) -->
+              <g id="dog" transform="translate(305,108)">
+                <ellipse
+                  cx="0"
+                  cy="10"
+                  rx="16"
+                  ry="10"
+                  fill="#1b1b21"
+                  stroke="#2a2a30"
+                  stroke-width="2"
+                />
+                <circle
+                  cx="-16"
+                  cy="6"
+                  r="7"
+                  fill="#1b1b21"
+                  stroke="#2a2a30"
+                  stroke-width="2"
+                />
+                <path
+                  d="M -20,0 q -3,6 2,8"
+                  fill="#1b1b21"
+                  stroke="#2a2a30"
+                  stroke-width="2"
+                />
+                <line
+                  x1="-8"
+                  y1="18"
+                  x2="-8"
+                  y2="26"
+                  stroke="#2a2a30"
+                  stroke-width="2"
+                />
+                <line
+                  x1="2"
+                  y1="18"
+                  x2="2"
+                  y2="26"
+                  stroke="#2a2a30"
+                  stroke-width="2"
+                />
+                <path
+                  id="dogTail"
+                  d="M 12,6 q 10,-4 12,4"
+                  fill="none"
+                  stroke="#2a2a30"
+                  stroke-width="2"
+                />
+                <animateTransform
+                  xlink:href="#dogTail"
+                  attributeName="transform"
+                  type="rotate"
+                  values="0 12 6; 15 12 6; 0 12 6"
+                  dur="1.2s"
+                  repeatCount="indefinite"
+                />
+              </g>
+
+              <!-- Gatito (cola ondulante) -->
+              <g id="cat" transform="translate(268,112)">
+                <ellipse
+                  cx="0"
+                  cy="8"
+                  rx="12"
+                  ry="9"
+                  fill="#1b1b21"
+                  stroke="#2a2a30"
+                  stroke-width="2"
+                />
+                <circle
+                  cx="12"
+                  cy="4"
+                  r="6.5"
+                  fill="#1b1b21"
+                  stroke="#2a2a30"
+                  stroke-width="2"
+                />
+                <polygon
+                  points="8,-1 12,-6 16,-1"
+                  fill="#1b1b21"
+                  stroke="#2a2a30"
+                  stroke-width="2"
+                />
+                <polygon
+                  points="18,-1 22,-6 26,-1"
+                  fill="#1b1b21"
+                  stroke="#2a2a30"
+                  stroke-width="2"
+                />
+                <line
+                  x1="7"
+                  y1="4"
+                  x2="1"
+                  y2="2"
+                  stroke="#2a2a30"
+                  stroke-width="2"
+                />
+                <line
+                  x1="7"
+                  y1="6"
+                  x2="1"
+                  y2="8"
+                  stroke="#2a2a30"
+                  stroke-width="2"
+                />
+                <line
+                  x1="17"
+                  y1="4"
+                  x2="23"
+                  y2="2"
+                  stroke="#2a2a30"
+                  stroke-width="2"
+                />
+                <line
+                  x1="17"
+                  y1="6"
+                  x2="23"
+                  y2="8"
+                  stroke="#2a2a30"
+                  stroke-width="2"
+                />
+                <path
+                  id="catTail"
+                  d="M -10,6 q -8,-4 -6,-12 q 6,-6 10,0"
+                  fill="none"
+                  stroke="#2a2a30"
+                  stroke-width="2"
+                />
+                <animateTransform
+                  xlink:href="#catTail"
+                  attributeName="transform"
+                  type="rotate"
+                  values="0 0 6;-10 0 6;0 0 6"
+                  dur="2.2s"
+                  repeatCount="indefinite"
+                />
+              </g>
             </g>
-          </g>
-          <!-- === FIN escena de casa === -->
-        </svg>
-      </div>
+            <!-- === FIN escena de casa === -->
+          </svg>
+        </div>
+      </section>
 
       <!-- CARTA + PROMESAS -->
       <section class="section grid">
